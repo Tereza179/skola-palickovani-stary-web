@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zápis do Kurzu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>ŠKOLA PALIČKOVÁNÍ U KRAJKY</h1>
+        <p>Tradiční krajkářská technika pro začátečníky i pokročilé</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Úvod</a></li>
+            <li><a href="kurzy.html">Kurzy a Techniky</a></li>
+            <li><a href="lektori.html">Lektoři a Zázemí</a></li>
+            <li><a href="zapis.html">Zápis do Kurzu</a></li>
+            <li><a href="evidence.html">Evidence Kurzů</a></li>
+            <li><a href="english.html">English</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="school-note">
+            <strong>Toto je školní web školy paličkování.</strong> Všechny informace jsou určeny pro vzdělávací účely.
+        </div>
+        <section>
+            <h2>Zápis do Kurzu</h2>
+            <form action="https://formsubmit.co/tkurekova@spskt.cz" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="jmeno">Jméno a Příjmení *</label>
+                    <input type="text" id="jmeno" name="jmeno" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-confirm">Potvrzení E-mailu *</label>
+                    <input type="email" id="email-confirm" name="email-confirm" required oninput="checkEmailMatch()">
+                    <span id="email-error" style="color: red; display: none;">E-maily se neshodují</span>
+                </div>
+                <div class="form-group">
+                    <label for="telefon">Telefon</label>
+                    <input type="tel" id="telefon" name="telefon">
+                </div>
+                <div class="form-group">
+                    <label for="kurz">Vyberte Kurz *</label>
+                    <select id="kurz" name="kurz" required>
+                        <option value="">Vyberte...</option>
+                        <option value="zaklady">Základy Paličkování</option>
+                        <option value="tradicni">Tradiční Vzory</option>
+                        <option value="sperky">Šperky z Krajky</option>
+                        <option value="vanoce">Vánoční Ozdoby</option>
+                        <option value="jemna">Jemná Krajka</option>
+                        <option value="detske">Dětské Paličkování</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="zkusenost">Zkušenost s Paličkováním (týdny)</label>
+                    <input type="range" id="zkusenost" name="zkusenost" min="0" max="52" value="0" oninput="updateSliderValue()">
+                    <span class="slider-value" id="slider-value">0 týdnů</span>
+                </div>
+                <div class="form-group">
+                    <label for="termin">Preferovaný Termín</label>
+                    <select id="termin" name="termin">
+                        <option value="">Vyberte...</option>
+                        <option value="pondeli">Pondělí</option>
+                        <option value="utery">Úterý</option>
+                        <option value="streda">Středa</option>
+                        <option value="ctvrtek">Čtvrtek</option>
+                        <option value="patek">Pátek</option>
+                        <option value="vikend">Víkend</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="rodne-cislo">Rodné Číslo *</label>
+                    <input type="text" id="rodne-cislo" name="rodne-cislo" pattern="\d{6}/\d{4}" required placeholder="YYMMDD/XXXX">
+                </div>
+                <div class="form-group">
+                    <label for="obrazek">Obrázek Oblíbeného Podvinku</label>
+                    <input type="file" id="obrazek" name="obrazek" accept="image/*">
+                </div>
+                <button type="submit">Odeslat Zápis</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Škola Paličkování u Krajky. Všechna práva vyhrazena.</p>
+    </footer>
+    <script>
+        function updateSliderValue() {
+            const slider = document.getElementById('zkusenost');
+            const value = document.getElementById('slider-value');
+            value.textContent = slider.value + ' týdnů';
+        }
+
+        function checkEmailMatch() {
+            const email = document.getElementById('email').value;
+            const confirm = document.getElementById('email-confirm').value;
+            const error = document.getElementById('email-error');
+            if (email !== confirm) {
+                error.style.display = 'block';
+            } else {
+                error.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
